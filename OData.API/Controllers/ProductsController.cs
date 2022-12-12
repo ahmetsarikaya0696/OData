@@ -15,7 +15,7 @@ namespace OData.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Categories);
+            return Ok(_context.Products);
         }
     }
 }
