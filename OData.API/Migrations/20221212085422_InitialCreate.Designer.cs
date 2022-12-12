@@ -12,7 +12,7 @@ using OData.API.Models;
 namespace OData.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221212074752_InitialCreate")]
+    [Migration("20221212085422_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

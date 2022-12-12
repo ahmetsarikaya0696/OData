@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OData.API.Models;
+using OData.API.Seeds;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,14 @@ builder.Services.AddDbContext<AppDbContext>(
         options => options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name)));
 
 var app = builder.Build();
+
+// Seeding Db
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = scope.ServiceProvider.GetService<AppDbContext>();
+    DataSeed.SeedDatabase(context);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
