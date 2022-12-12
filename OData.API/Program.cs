@@ -1,13 +1,31 @@
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
 using OData.API.Models;
 using OData.API.Seeds;
 using System.Reflection;
+
+///
+/// EDM => Entity Data Model
+///
+static IEdmModel GetEdmModel()
+{
+    ODataConventionModelBuilder oDataConventionModelBuilder = new();
+    oDataConventionModelBuilder.EntitySet<Category>("Categories");
+    oDataConventionModelBuilder.EntitySet<Product>("Products");
+
+    return oDataConventionModelBuilder.GetEdmModel();
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+// OData Settings
+builder.Services.AddControllers()
+                .AddOData(options => options.AddRouteComponents("OData", GetEdmModel()).Filter().Select().Expand());
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,7 +51,7 @@ using (var scope = app.Services.CreateScope())
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/odata/swagger.json", "OData"));
 }
 
 app.UseHttpsRedirection();
