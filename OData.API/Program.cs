@@ -24,7 +24,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // OData Settings
 builder.Services.AddControllers()
-                .AddOData(options => options.AddRouteComponents("OData", GetEdmModel()).Filter().Select().Expand());
+                .AddOData(options => options.AddRouteComponents("OData", GetEdmModel()).Filter().Select().Expand().OrderBy().Count().SetMaxTop(null));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
