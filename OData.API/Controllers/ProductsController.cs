@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using OData.API.Models;
@@ -13,9 +14,16 @@ namespace OData.API.Controllers
 
         [EnableQuery]
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetProducts()
         {
-            return Ok(_context.Products);
+            return Ok(_context.Products.AsQueryable());
+        }
+
+        [EnableQuery]
+        [HttpGet]
+        public IActionResult GetProduct([FromODataUri]int key)
+        {
+            return Ok(_context.Products.Where(p => p.Id == key));
         }
     }
 }

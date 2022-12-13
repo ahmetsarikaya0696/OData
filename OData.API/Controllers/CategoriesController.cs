@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using OData.API.Models;
@@ -13,9 +14,16 @@ namespace OData.API.Controllers
 
         [EnableQuery]
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetCategories()
         {
-            return Ok(_context.Categories);
+            return Ok(_context.Categories.AsQueryable());
+        }
+
+        [EnableQuery]
+        [HttpGet]
+        public IActionResult GetCategory([FromODataUri] int key)
+        {
+            return Ok(_context.Categories.Where(c => c.Id == key));
         }
     }
 }
