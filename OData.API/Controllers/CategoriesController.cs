@@ -34,5 +34,13 @@ namespace OData.API.Controllers
         {
             return Ok(_context.Products.Where(p => p.CategoryId == categoryId && p.Id == productId));
         }
+
+        [ODataAttributeRouting]
+        [EnableQuery]
+        [HttpGet("OData/Categories({Id})/Products")]
+        public IActionResult GetProducts([FromODataUri] int Id)
+        {
+            return Ok(_context.Products.Where(p => p.CategoryId == Id));
+        }
     }
 }
