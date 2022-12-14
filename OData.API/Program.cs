@@ -15,10 +15,32 @@ static IEdmModel GetEdmModel()
     oDataConventionModelBuilder.EntitySet<Category>("Categories");
     oDataConventionModelBuilder.EntitySet<Product>("Products");
 
+    #region Actions Without Parameters
     // .../OData/Categories(1)/TotalProductPrice
     oDataConventionModelBuilder.EntityType<Category>().Action("TotalProductPrice")
                                                       .Returns<int>();
 
+    // .../OData/Categories/TotalProductPrice2
+    oDataConventionModelBuilder.EntityType<Category>().Collection
+                                                      .Action("TotalProductPrice2")
+                                                      .Returns<int>();
+    #endregion
+
+    #region Actions With Parameters
+    // .../OData/Category/TotalProductPrice
+    oDataConventionModelBuilder.EntityType<Category>().Collection
+                                                      .Action("TotalProductPriceWithParameter")
+                                                      .Returns<int>()
+                                                      .Parameter<int>("categoryId");
+
+    var actionTotal = oDataConventionModelBuilder.EntityType<Category>().Collection
+                                                                        .Action("Total")
+                                                                        .Returns<int>(); 
+    #endregion
+
+    actionTotal.Parameter<int>("a");
+    actionTotal.Parameter<int>("b");
+    actionTotal.Parameter<int>("c");
 
     return oDataConventionModelBuilder.GetEdmModel();
 }
