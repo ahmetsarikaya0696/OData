@@ -43,5 +43,17 @@ namespace OData.API.Controllers
             _context.SaveChanges();
             return NoContent();
         }
+
+        [HttpDelete]
+        public IActionResult DeleteProduct([FromODataUri]int key)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == key);
+            if (product == null) return NotFound();
+
+            _context.Remove(product);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
