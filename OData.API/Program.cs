@@ -36,11 +36,16 @@ static IEdmModel GetEdmModel()
     var actionTotal = oDataConventionModelBuilder.EntityType<Category>().Collection
                                                                         .Action("Total")
                                                                         .Returns<int>(); 
-    #endregion
-
+   
     actionTotal.Parameter<int>("a");
     actionTotal.Parameter<int>("b");
     actionTotal.Parameter<int>("c");
+    #endregion
+
+    oDataConventionModelBuilder.EntityType<Product>().Collection
+                                                     .Action("Login")
+                                                     .Returns<string>()
+                                                     .Parameter<Login>("Login");
 
     return oDataConventionModelBuilder.GetEdmModel();
 }

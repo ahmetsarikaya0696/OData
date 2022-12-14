@@ -45,7 +45,7 @@ namespace OData.API.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteProduct([FromODataUri]int key)
+        public IActionResult DeleteProduct([FromODataUri] int key)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == key);
             if (product == null) return NotFound();
@@ -54,6 +54,13 @@ namespace OData.API.Controllers
             _context.SaveChanges();
 
             return NoContent();
+        }
+
+        [HttpPost]
+        public IActionResult Login(ODataActionParameters parameters)
+        {
+            Login login = parameters["Login"] as Login;
+            return Ok($"Email : {login.Email}-Password : {login.Password}");
         }
     }
 }
