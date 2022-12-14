@@ -12,7 +12,7 @@ namespace OData.API.Controllers
         {
         }
 
-        [EnableQuery]
+        [EnableQuery(PageSize = 2)]
         [HttpGet]
         public IActionResult GetProducts()
         {
@@ -21,7 +21,7 @@ namespace OData.API.Controllers
 
         [EnableQuery]
         [HttpGet]
-        public IActionResult GetProduct([FromODataUri]int key)
+        public IActionResult GetProduct([FromODataUri] int key)
         {
             return Ok(_context.Products.Where(p => p.Id == key));
         }
