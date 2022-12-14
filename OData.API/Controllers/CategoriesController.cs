@@ -80,5 +80,14 @@ namespace OData.API.Controllers
             return Ok(a + b + c);
         }
 
+        [ODataAttributeRouting]
+        [EnableQuery]
+        [HttpGet("OData/Categories/CategoryCount")]
+        public IActionResult CategoryCount()
+        {
+            int count = _context.Categories.Count();
+            return Ok(count);
+        }
+
     }
 }

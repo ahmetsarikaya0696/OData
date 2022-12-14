@@ -40,12 +40,20 @@ static IEdmModel GetEdmModel()
     actionTotal.Parameter<int>("a");
     actionTotal.Parameter<int>("b");
     actionTotal.Parameter<int>("c");
-    #endregion
-
+   
+    
     oDataConventionModelBuilder.EntityType<Product>().Collection
                                                      .Action("Login")
                                                      .Returns<string>()
                                                      .Parameter<Login>("Login");
+    #endregion
+
+    #region Functions Without Parameters
+    oDataConventionModelBuilder.EntityType<Category>().Collection
+                                                      .Function("CategoryCount")
+                                                      .Returns<int>();
+    #endregion
+
 
     return oDataConventionModelBuilder.GetEdmModel();
 }
