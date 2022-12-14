@@ -25,5 +25,13 @@ namespace OData.API.Controllers
         {
             return Ok(_context.Products.Where(p => p.Id == key));
         }
+
+        [HttpPost]
+        public IActionResult PostProduct([FromBody]Product product)
+        {
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            return Ok(product);
+        }
     }
 }
