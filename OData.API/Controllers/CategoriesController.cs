@@ -42,5 +42,15 @@ namespace OData.API.Controllers
         {
             return Ok(_context.Products.Where(p => p.CategoryId == Id));
         }
+
+        [HttpPost]
+        public IActionResult TotalProductPrice([FromODataUri]int key)
+        {
+            int total = _context.Products.Where(p => p.CategoryId == key)
+                                         .Sum(p => p.Price);
+
+            return Ok(total);
+        }
+
     }
 }

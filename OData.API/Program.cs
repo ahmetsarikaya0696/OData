@@ -15,6 +15,11 @@ static IEdmModel GetEdmModel()
     oDataConventionModelBuilder.EntitySet<Category>("Categories");
     oDataConventionModelBuilder.EntitySet<Product>("Products");
 
+    // .../OData/Categories(1)/TotalProductPrice
+    oDataConventionModelBuilder.EntityType<Category>().Action("TotalProductPrice")
+                                                      .Returns<int>();
+
+
     return oDataConventionModelBuilder.GetEdmModel();
 }
 
