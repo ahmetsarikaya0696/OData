@@ -35,13 +35,13 @@ static IEdmModel GetEdmModel()
 
     var actionTotal = oDataConventionModelBuilder.EntityType<Category>().Collection
                                                                         .Action("Total")
-                                                                        .Returns<int>(); 
-   
+                                                                        .Returns<int>();
+
     actionTotal.Parameter<int>("a");
     actionTotal.Parameter<int>("b");
     actionTotal.Parameter<int>("c");
-   
-    
+
+
     oDataConventionModelBuilder.EntityType<Product>().Collection
                                                      .Action("Login")
                                                      .Returns<string>()
@@ -65,7 +65,9 @@ static IEdmModel GetEdmModel()
     multiplyFunction.Parameter<int>("a3");
     #endregion
 
-
+    oDataConventionModelBuilder.EntityType<Product>().Function("KdvHesapla")
+                                                     .Returns<double>()
+                                                     .Parameter<double>("kdv");
 
     return oDataConventionModelBuilder.GetEdmModel();
 }

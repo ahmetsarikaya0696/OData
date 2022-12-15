@@ -67,14 +67,21 @@ namespace OData.API.Controllers
         /// <summary>
         /// .../OData/Products/MultiplyFunction(a1=3,a2=4,a3=5)
         /// </summary>
-        /// <param name="a1"></param>
-        /// <param name="a2"></param>
-        /// <param name="a3"></param>
+        /// <param sayi1="a1"></param>
+        /// <param sayi2="a2"></param>
+        /// <param sayi3="a3"></param>
         /// <returns></returns>
         [HttpGet]
         public IActionResult MultiplyFunction([FromODataUri] int a1, [FromODataUri] int a2, [FromODataUri] int a3)
         {
             return Ok(a1 * a2 * a3);
+        }
+
+        [HttpGet]
+        public IActionResult KdvHesapla([FromODataUri] int key, [FromODataUri] double kdv)
+        {
+            var product = _context.Products.Find(key);
+            return Ok($"{product.Price + product.Price * kdv}");
         }
     }
 }
