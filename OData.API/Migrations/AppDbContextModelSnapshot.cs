@@ -38,6 +38,25 @@ namespace OData.API.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("OData.API.Models.Feature", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Height")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Width")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Features");
+                });
+
             modelBuilder.Entity("OData.API.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -68,6 +87,15 @@ namespace OData.API.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("OData.API.Models.Feature", b =>
+                {
+                    b.HasOne("OData.API.Models.Product", "Product")
+                        .WithOne("Feature")
+                        .HasForeignKey("OData.API.Models.Feature", "Id");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("OData.API.Models.Product", b =>
                 {
                     b.HasOne("OData.API.Models.Category", "Category")
@@ -82,6 +110,11 @@ namespace OData.API.Migrations
             modelBuilder.Entity("OData.API.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("OData.API.Models.Product", b =>
+                {
+                    b.Navigation("Feature");
                 });
 #pragma warning restore 612, 618
         }

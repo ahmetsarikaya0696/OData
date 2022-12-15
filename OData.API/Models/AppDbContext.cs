@@ -11,5 +11,17 @@ namespace OData.API.Models
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Feature> Features { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                                .HasOne(p => p.Feature)
+                                .WithOne(f => f.Product)
+                                .HasForeignKey<Feature>(f => f.Id)
+                                .IsRequired(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

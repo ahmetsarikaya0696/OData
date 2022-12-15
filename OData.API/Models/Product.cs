@@ -12,5 +12,6 @@
         public Category Category { get; set; }
         public int CategoryId { get; set; }
 
+        public Feature Feature { get; set; }
     }
 }
