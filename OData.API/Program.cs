@@ -63,11 +63,18 @@ static IEdmModel GetEdmModel()
     multiplyFunction.Parameter<int>("a1");
     multiplyFunction.Parameter<int>("a2");
     multiplyFunction.Parameter<int>("a3");
-    #endregion
-
+   
     oDataConventionModelBuilder.EntityType<Product>().Function("KdvHesapla")
                                                      .Returns<double>()
                                                      .Parameter<double>("kdv");
+    #endregion
+
+    #region Unbound Functions
+    // Ayný þekilde Action da yazýlabilir.
+    oDataConventionModelBuilder.Function("KdvHesapla")
+                               .Returns<double>();
+    #endregion
+
 
     return oDataConventionModelBuilder.GetEdmModel();
 }
