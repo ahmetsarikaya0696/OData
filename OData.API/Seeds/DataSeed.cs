@@ -14,7 +14,7 @@ namespace OData.API.Seeds
                 Stock = 100,
                 Price = 125,
                 CreatedDate = DateTime.Now,
-                Feature = new() { Id = 1, Height = 100, Width = 2100, Color = "Red" }
+                Feature = new() { Height = 100, Width = 2100, Color = "Red" }
             };
 
             Product p2 = new()
@@ -23,7 +23,7 @@ namespace OData.API.Seeds
                 Stock = 222,
                 Price = 444,
                 CreatedDate = DateTime.Now,
-                Feature = new() { Id = 2, Height = 200, Width = 2200, Color = "Blue" }
+                Feature = new() { Height = 200, Width = 2200, Color = "Blue" }
             };
 
             Product p3 = new()
@@ -32,7 +32,7 @@ namespace OData.API.Seeds
                 Stock = 334,
                 Price = 600,
                 CreatedDate = DateTime.Now,
-                Feature = new() { Id = 3, Height = 300, Width = 2300, Color = "Yellow" }
+                Feature = new() { Height = 300, Width = 2300, Color = "Yellow" }
             };
 
             Product p4 = new()
@@ -41,7 +41,7 @@ namespace OData.API.Seeds
                 Stock = 300,
                 Price = 838,
                 CreatedDate = DateTime.Now,
-                Feature = new() { Id = 4, Height = 400, Width = 2400, Color = "Red" }
+                Feature = new() { Height = 400, Width = 2400, Color = "Red" }
 
             };
 
@@ -51,7 +51,7 @@ namespace OData.API.Seeds
                 Stock = 200,
                 Price = 100,
                 CreatedDate = DateTime.Now,
-                Feature = new() { Id = 5, Height = 500, Width = 2500, Color = "Red" }
+                Feature = new() { Height = 500, Width = 2500, Color = "Red" }
             };
 
             Product p6 = new()
