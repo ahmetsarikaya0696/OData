@@ -14,6 +14,7 @@ namespace OData.API.Controllers
         }
 
         //[EnableQuery(PageSize = 2)]
+        [EnableQuery]
         [HttpGet]
         public IActionResult GetProducts()
         {
