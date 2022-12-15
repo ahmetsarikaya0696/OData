@@ -62,5 +62,19 @@ namespace OData.API.Controllers
             Login login = parameters["Login"] as Login;
             return Ok($"Email : {login.Email}-Password : {login.Password}");
         }
+
+
+        /// <summary>
+        /// .../OData/Products/MultiplyFunction(a1=3,a2=4,a3=5)
+        /// </summary>
+        /// <param name="a1"></param>
+        /// <param name="a2"></param>
+        /// <param name="a3"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult MultiplyFunction([FromODataUri] int a1, [FromODataUri] int a2, [FromODataUri] int a3)
+        {
+            return Ok(a1 * a2 * a3);
+        }
     }
 }

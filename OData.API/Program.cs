@@ -54,6 +54,18 @@ static IEdmModel GetEdmModel()
                                                       .Returns<int>();
     #endregion
 
+    #region Functions With Parameter
+
+    var multiplyFunction = oDataConventionModelBuilder.EntityType<Product>().Collection
+                                                                            .Function("MultiplyFunction")
+                                                                            .Returns<int>();
+
+    multiplyFunction.Parameter<int>("a1");
+    multiplyFunction.Parameter<int>("a2");
+    multiplyFunction.Parameter<int>("a3");
+    #endregion
+
+
 
     return oDataConventionModelBuilder.GetEdmModel();
 }
